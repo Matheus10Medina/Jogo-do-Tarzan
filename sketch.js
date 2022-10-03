@@ -19,11 +19,48 @@ function setup(){ // todas as configuraçoes dos objetos
   createCanvas(600,200);
 
   solo= createSprite(300,199,600,1);
+  tarzan= createSprite(70, 150, 50, 50)
+  tarzan.addAnimation("Em_pe", tarzan_img)
+  tarzan.addAnimation("baixo", tarzan_down)
+  tarzan.addAnimation("ataque", tarzan_right)
+  tarzan.addAnimation("pulando", tarzan_jump)
+  
 }
 
 function draw(){
   background(bg);
   drawSprites(); 
   text(mouseX + ","+ mouseY, mouseX, mouseY);
+  controle();
+  tarzan.collide(solo)
 }
 
+function controle (){
+  if(keyDown("up")){
+tarzan.y-=5
+tarzan.changeAnimation("Em_pe", tarzan_img)
+
+  }
+  if(keyDown("left")){
+    tarzan.x-=5
+    
+      }
+      if(keyDown("right")){
+        tarzan.x+=5
+        tarzan.changeAnimation("ataque", tarzan_right)
+        
+          }
+          if(keyDown("down")){
+            tarzan.y+=5
+            tarzan.changeAnimation("baixo",tarzan_down)
+            tarzan.velocityY=0
+              }
+              if(keyDown("space")){
+                tarzan.changeAnimation("pulando",tarzan_jump)
+            tarzan.velocityY=-5
+        
+                
+                  }
+  
+
+}
